@@ -1,10 +1,10 @@
-var ghdownload = require('../src/main.js')
-var testutil = require('testutil')
-var fs = require('fs-extra')
-var path = require('path')
-var nock = require('nock')
+const ghdownload = require('../src/main.js')
+const testutil = require('testutil')
+const fs = require('fs-extra')
+const path = require('path')
+const nock = require('nock')
 
-var TEST_DIR = null
+let TEST_DIR = null
 
 /* global beforeEach describe it T */
 
@@ -16,35 +16,35 @@ describe('github-download', function () {
 
   describe('> when input is an object with user and repo', function () {
     it('should download the latest copy of master', function (done) {
-      var input = {user: 'jprichardson', repo: 'node-batchflow'}
+      const input = { user: 'jprichardson', repo: 'node-batchflow' }
       TEST(path.join(TEST_DIR, '1'), input, done)
     })
   })
 
   describe('> when input is an relative Github repo', function () {
     it('should download the latest copy of master', function (done) {
-      var input = 'jprichardson/node-batchflow'
+      const input = 'jprichardson/node-batchflow'
       TEST(path.join(TEST_DIR, '2'), input, done)
     })
   })
 
   describe('> when input is git path Github repo', function () {
     it('should download the latest copy of master', function (done) {
-      var input = 'git@github.com:jprichardson/node-batchflow.git'
+      const input = 'git@github.com:jprichardson/node-batchflow.git'
       TEST(path.join(TEST_DIR, '3'), input, done)
     })
   })
 
   describe('> when Github API limit has been reached', function () {
     it('should download the zip of the repo', function (done) {
-      var input = {user: 'jprichardson', repo: 'node-batchflow'}
+      const input = { user: 'jprichardson', repo: 'node-batchflow' }
 
       nock('https://api.github.com/')
         .filteringPath(function (path) {
           return '*'
         })
         .get('*')
-        .reply(403, {message: 'API Rate Limit Exceeded for $IP'})
+        .reply(403, { message: 'API Rate Limit Exceeded for $IP' })
 
       TEST(path.join(TEST_DIR, '4'), input, done)
     })
@@ -52,9 +52,9 @@ describe('github-download', function () {
 })
 
 function TEST (outputDir, input, done) {
-  var files = []
-  var dirs = []
-  var zip = null
+  const files = []
+  const dirs = []
+  let zip = null
 
   // console.log('OD: ' + outputDir)
   if (!fs.existsSync(outputDir)) {
@@ -83,7 +83,7 @@ function TEST (outputDir, input, done) {
         T(dirs.length >= 2)
       }
 
-      var items = []
+      let items = []
 
       // console.log('OD2: ' + outputDir)
       items = items.concat(fs.readdirSync(outputDir))

@@ -1,11 +1,11 @@
-var EventEmitter = require('events').EventEmitter
-var vcsurl = require('vcsurl')
-var path = require('path')
-var fs = require('fs-extra')
-var fsPromises = require('fs/promises')
-var util = require('util')
-var extractZip = require('./extract-zip').extractZip
-var cwd = process.cwd()
+const EventEmitter = require('events').EventEmitter
+const vcsurl = require('vcsurl')
+const path = require('path')
+const fs = require('fs-extra')
+const fsPromises = require('fs/promises')
+const util = require('util')
+const extractZip = require('./extract-zip').extractZip
+const cwd = process.cwd()
 
 function GithubDownloader (user, repo, ref, dir) {
   this.user = user
@@ -18,12 +18,12 @@ function GithubDownloader (user, repo, ref, dir) {
 util.inherits(GithubDownloader, EventEmitter)
 
 GithubDownloader.prototype.start = function () {
-  var _this = this
-  var initialUrl = 'https://api.github.com/repos/' + this.user + '/' + this.repo + '/contents/'
-  var initialUrlRef = this.ref ? '?ref=' + this.ref : ''
-  var rawUrl = 'https://raw.github.com/' + this.user + '/' + this.repo + '/' + this.ref + '/'
-  var pending = 0
-  var gonnaProcess = 0
+  const _this = this
+  const initialUrl = 'https://api.github.com/repos/' + this.user + '/' + this.repo + '/contents/'
+  const initialUrlRef = this.ref ? '?ref=' + this.ref : ''
+  const rawUrl = 'https://raw.github.com/' + this.user + '/' + this.repo + '/' + this.ref + '/'
+  let pending = 0
+  let gonnaProcess = 0
 
   gonnaProcess += 1
   requestJSON.call(this, initialUrl + initialUrlRef, processItems)
@@ -37,7 +37,7 @@ GithubDownloader.prototype.start = function () {
 
   function handleItem (item) {
     if (item.type === 'dir') {
-      var dir = path.join(_this.dir, item.path)
+      const dir = path.join(_this.dir, item.path)
       fs.mkdirs(dir, function (err) {
         if (err) _this.emit('error', err)
         _this._log.push(dir)
@@ -48,7 +48,7 @@ GithubDownloader.prototype.start = function () {
         checkDone()
       })
     } else if (item.type === 'file') {
-      var file = path.join(_this.dir, item.path)
+      const file = path.join(_this.dir, item.path)
       fs.createFile(file, function (err) {
         if (err) _this.emit('error', err)
 
@@ -82,10 +82,10 @@ GithubDownloader.prototype.start = function () {
 
 module.exports = function GithubDownload (params, dir) {
   if (typeof params === 'string') {
-    var pieces = params.split('#')
-    var ref = pieces[1]
-    var url = (vcsurl(pieces[0]) || pieces[0]).split('/')
-    params = {user: url[url.length - 2], repo: url[url.length - 1], ref: ref}
+    const pieces = params.split('#')
+    const ref = pieces[1]
+    const url = (vcsurl(pieces[0]) || pieces[0]).split('/')
+    params = { user: url[url.length - 2], repo: url[url.length - 1], ref }
   }
 
   if (typeof params !== 'object') {
@@ -95,7 +95,7 @@ module.exports = function GithubDownload (params, dir) {
   // console.dir(params)
 
   dir = dir || process.cwd()
-  var gh = new GithubDownloader(params.user, params.repo, params.ref, dir)
+  const gh = new GithubDownloader(params.user, params.repo, params.ref, dir)
   return gh.start()
 }
 
@@ -121,7 +121,7 @@ function requestJSON (url, callback) {
 }
 
 function downloadZip () {
-  var _this = this
+  const _this = this
   if (_this._getZip) return
   _this._getZip = true
 
@@ -129,11 +129,11 @@ function downloadZip () {
     fs.remove(file)
   })
 
-  var tmpdir = generateTempDir()
-  var zipBaseDir = _this.repo + '-' + _this.ref
-  var zipFile = path.join(tmpdir, zipBaseDir + '.zip')
+  const tmpdir = generateTempDir()
+  const zipBaseDir = _this.repo + '-' + _this.ref
+  const zipFile = path.join(tmpdir, zipBaseDir + '.zip')
 
-  var zipUrl = 'https://nodeload.github.com/' + _this.user + '/' + _this.repo + '/zip/' + _this.ref
+  const zipUrl = 'https://nodeload.github.com/' + _this.user + '/' + _this.repo + '/zip/' + _this.ref
   _this.emit('zip', zipUrl)
 
   // console.log(zipUrl)
@@ -145,7 +145,7 @@ function downloadZip () {
         await fsPromises.writeFile(zipFile, body)
 
         extractZip.call(_this, zipFile, tmpdir, function (extractedFolderName) {
-          var oldPath = path.join(tmpdir, extractedFolderName)
+          const oldPath = path.join(tmpdir, extractedFolderName)
           fs.rename(oldPath, _this.dir, function (err) {
             if (err) _this.emit('error', err)
             fs.remove(tmpdir, function (err) {
