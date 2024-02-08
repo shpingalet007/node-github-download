@@ -1,4 +1,4 @@
-var ghdownload = require('../lib/github-download')
+var ghdownload = require('../src/main.js')
 var testutil = require('testutil')
 var fs = require('fs-extra')
 var path = require('path')

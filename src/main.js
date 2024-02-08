@@ -4,7 +4,7 @@ var path = require('path')
 var fs = require('fs-extra')
 var fsPromises = require('fs/promises')
 var util = require('util')
-var extractZip = require('./zip').extractZip
+var extractZip = require('./extract-zip').extractZip
 var cwd = process.cwd()
 
 function GithubDownloader (user, repo, ref, dir) {

@@ -16,6 +16,7 @@
   ],
   "author": "JP Richardson <jprichardson@gmail.com>",
   "license": "MIT",
+  "files": ["src"],
   "dependencies": {
     "adm-zip": "~0.5.5",
     "fs-extra": "^10.0.0",
@@ -27,7 +28,7 @@
     "standard": "^17.1.0",
     "testutil": "~0.5.0"
   },
-  "main": "./lib/github-download.js",
+  "main": "./src/main.js",
   "scripts": {
     "lint": "standard",
     "test": "npm run lint && npm run unit",
