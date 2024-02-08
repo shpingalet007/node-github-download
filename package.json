@@ -1,10 +1,10 @@
 {
-  "name": "github-download",
+  "name": "@shpiga/github-download",
   "version": "1.6.0",
   "description": "Easily download Github repos without any external dependencies such as Git, Tar, Unzip, etc.",
   "repository": {
     "type": "git",
-    "url": "git@github.com:jprichardson/node-github-download.git"
+    "url": "git+ssh://git@github.com/shpingalet007/node-github-download.git"
   },
   "keywords": [
     "github",
@@ -16,7 +16,9 @@
   ],
   "author": "JP Richardson <jprichardson@gmail.com>",
   "license": "MIT",
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "dependencies": {
     "adm-zip": "~0.5.5",
     "fs-extra": "^10.0.0",
@@ -33,5 +35,12 @@
     "lint": "standard",
     "test": "npm run lint && npm run unit",
     "unit": "mocha test"
+  },
+  "bugs": {
+    "url": "https://github.com/shpingalet007/node-github-download/issues"
+  },
+  "homepage": "https://github.com/shpingalet007/node-github-download#readme",
+  "directories": {
+    "test": "test"
   }
 }
