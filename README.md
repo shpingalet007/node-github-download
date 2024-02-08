@@ -1,7 +1,13 @@
+---
+##### ⚠️ THIS IS A FORK
+###### _This package is a fork of the public NPM [github-download](https://www.npmjs.com/package/github-download)._
+###### _It was created to address security issues, fix bugs and add new functionality. While I'm not the author, I would be happy to resolve some issues and accept PR's._
+###### _All rights reserved by [jprichardson](https://github.com/jprichardson) and licensed under MIT._
+
+---
+
 Node.js - github-download
 ================
-
-[![build status](https://secure.travis-ci.org/jprichardson/node-github-download.svg)](http://travis-ci.org/jprichardson/node-github-download)
 
 Easily download Github repos without any external dependencies such as Git, Tar, Unzip, etc.
 
@@ -15,7 +21,7 @@ I really like the concept of managing user defined projects, repos, file structu
 Installation
 ------------
 
-    npm install github-download
+    npm install @shpiga/github-download
 
 
 
@@ -40,7 +46,7 @@ Returns a GithubDownloader object that emits events on `dir`, `file`, and `end`.
 Example:
 
 ```javascript
-var ghdownload = require('github-download')
+var ghdownload = require('@shpiga/github-download')
   , exec = require('exec')
 
 ghdownload({user: 'jprichardson', repo: 'node-batchflow', ref: 'master'}, process.cwd())

@@ -42,5 +42,8 @@
   "homepage": "https://github.com/shpingalet007/node-github-download#readme",
   "directories": {
     "test": "test"
+  },
+  "engines": {
+    "node": ">= 14.17"
   }
 }

@@ -1,3 +1,12 @@
+1.6.0 / 2023-02-08
+------------------
+- Use native Node.js Fetch API insted of deprecated and insecure request
+- General dependencies upgrades
+- Use NPM package lockfile for security reasons
+- Code lintings with new Standard
+- Drop support for Node.js `< v14.17`
+- Review project structure
+
 0.5.0 / 2016-05-04
 ------------------
 - standard update
