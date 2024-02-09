@@ -1,6 +1,6 @@
 {
-  "name": "@shpiga/github-download",
-  "version": "1.6.0",
+  "name": "@shpiga/githubdownload",
+  "version": "1.6.1",
   "description": "Easily download Github repos without any external dependencies such as Git, Tar, Unzip, etc.",
   "repository": {
     "type": "git",

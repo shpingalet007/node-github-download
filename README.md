@@ -21,7 +21,7 @@ I really like the concept of managing user defined projects, repos, file structu
 Installation
 ------------
 
-    npm install @shpiga/github-download
+    npm install @shpiga/githubdownload
 
 
 
@@ -46,7 +46,7 @@ Returns a GithubDownloader object that emits events on `dir`, `file`, and `end`.
 Example:
 
 ```javascript
-var ghdownload = require('@shpiga/github-download')
+var ghdownload = require('@shpiga/githubdownload')
   , exec = require('exec')
 
 ghdownload({user: 'jprichardson', repo: 'node-batchflow', ref: 'master'}, process.cwd())
